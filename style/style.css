@@ -1,0 +1,224 @@
+:root {
+    --blue-background: rgb(53 174 195);
+    --black-button: rgb(86, 82, 82);
+    --white-header: white;
+    --header-width: 150px;
+    --burn-orange: #D34A44;
+    --blue-primary: #2564CF;
+    --button-width: 120px;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+input:focus {
+    outline: none;
+}
+
+@font-face {
+    font-family: "ubuntu-regular";
+    src: URL("../assets/fonts/Ubuntu-Regular.ttf") format("truetype");
+}
+
+body {
+    font-family: "ubuntu-regular";
+}
+
+/* --------- Nav Bar ----------- */
+
+.bar {
+    padding: 0px 0px;
+    background-color: var(--blue-primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+}
+
+.bar.blur {
+    filter: blur(2px);
+    pointer-events: none;
+}
+
+.logo h3 {
+    color: white;
+    padding: 0px 8px;
+    cursor: pointer;
+}
+
+/* --------- Nav Bar End ----------- */
+
+/* --------------- FORM BLOCK ---------------- */
+
+.grid-container {
+    height: 90vh;
+    display: grid;
+    grid-template-columns: 60vw 40vw;
+}
+
+.left-container {
+    grid-column: 1 / 2;
+    background-color: #D34A44;
+}
+
+.right-container {
+    grid-column: 2 / 2;
+}
+
+
+
+.right-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-wrapper {
+    width: 90%;
+    /* margin: 32px 0px; */
+}
+
+.register-form {
+    display: none;
+}
+
+.login-form {
+    display: none;
+}
+
+.register-form.active {
+    display: block;
+}
+
+.login-form.active {
+    display: block;
+}
+
+.container {
+    padding: 16px;
+    background-color: white;
+}
+
+input[type=text],
+input[type=password] {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0px;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus,
+input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+/* Overwrite default styles of hr */
+.seperater-hr {
+    border: 1px solid #f1f1f1;
+    margin: 16px 0px;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.registerbtn:hover {
+    opacity: 1;
+}
+
+/* Add a blue text color to links */
+a {
+    color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+    background-color: #f1f1f1;
+    text-align: center;
+}
+
+.label-block{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.signin-link{
+    color: rgb(34, 137, 247);  
+    cursor: pointer;  
+}
+
+.signin-link :hover{
+    text-decoration: underline;
+}
+
+/* --------------- FORM BLOCK END ---------------- */
+
+
+/* response pop up */
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f4f4f4;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 240px;
+    z-index: 3;
+}
+
+
+.popup-content {
+    text-align: center;
+}
+
+.popup-content p{
+    margin: 8px 0px;
+}
+
+.close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.seccess-img-block{
+    display: flex;
+    justify-content: center;
+}
+
+.success-img{
+    height: 50px;
+    width: 50px;
+}
+
+.no-data-error{
+    margin: 8px 0px;
+    color: black;
+    text-align: center;
+    font-style: italic;
+    display: none;
+}
+
+
+/* ++++++++++++++++++++++ */

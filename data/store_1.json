@@ -1,0 +1,174 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "username": "shubham@123",
+      "password": "123",
+      "name": "shubham"
+    },
+    {
+      "name": "Test 1",
+      "username": "test@123",
+      "password": "123",
+      "id": 2
+    },
+    {
+      "name": "test2",
+      "username": "test2@123",
+      "password": "123",
+      "id": 3
+    }
+  ],
+  "expense": [
+    {
+      "id": 1,
+      "description": "Some description",
+      "amount": "Some amount",
+      "date": "2024-02-19",
+      "category": "Food"
+    },
+    {
+      "description": "Food",
+      "amount": 100,
+      "date": "2024-02-15",
+      "category": "Miscellaneous",
+      "id": 2
+    },
+    {
+      "description": "Petro",
+      "amount": 100,
+      "date": "2024-02-14",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 3
+    },
+    {
+      "description": "Rice",
+      "amount": 100,
+      "date": "2024-02-20",
+      "category": "Food",
+      "username": "shubham@123",
+      "id": 4
+    },
+    {
+      "description": "Grape",
+      "amount": 1500,
+      "date": "2024-02-20",
+      "category": "Food",
+      "username": "shubham@123",
+      "id": 5
+    },
+    {
+      "description": "Wheet",
+      "amount": 500,
+      "date": "2024-02-20",
+      "category": "Food",
+      "username": "shubham@123",
+      "id": 6
+    },
+    {
+      "description": "Chicken",
+      "amount": 1200,
+      "date": "2024-02-20",
+      "category": "Food",
+      "username": "shubham@123",
+      "id": 7
+    },
+    {
+      "description": "Dr visit",
+      "amount": 100,
+      "date": "2024-02-20",
+      "category": "Health",
+      "username": "shubham@123",
+      "id": 8
+    },
+    {
+      "description": "Movie",
+      "amount": 200,
+      "date": "2024-02-20",
+      "category": "Entertainment",
+      "username": "shubham@123",
+      "id": 9
+    },
+    {
+      "description": "Random things",
+      "amount": 5200,
+      "date": "2024-02-20",
+      "category": "Other",
+      "username": "shubham@123",
+      "id": 9
+    },
+    {
+      "description": "Invenstment",
+      "amount": 16200,
+      "date": "2024-02-20",
+      "category": "Savings and Investments",
+      "username": "shubham@123",
+      "id": 9
+    },
+    {
+      "description": "Fuel",
+      "amount": 1000,
+      "date": "2024-02-20",
+      "category": "Transportation",
+      "username": "shubham@123",
+      "id": 10
+    },
+    {
+      "description": "Mobile",
+      "amount": 20000,
+      "date": "2024-02-20",
+      "category": "Other",
+      "username": "shubham@123",
+      "id": 11
+    },
+    {
+      "description": "bat",
+      "amount": 1200,
+      "date": "2024-02-20",
+      "category": "Other",
+      "username": "shubham@123",
+      "id": 12
+    },
+    {
+      "description": "cooking oil",
+      "amount": 70,
+      "date": "2024-02-20",
+      "category": "Food",
+      "username": "shubham@123",
+      "id": 13
+    },
+    {
+      "description": "test 1",
+      "amount": 123,
+      "date": "2024-02-21",
+      "category": "Housing",
+      "username": "shubham@123",
+      "id": 14
+    },
+    {
+      "description": "kitchen tools",
+      "amount": 200,
+      "date": "2024-02-21",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 16
+    },
+    {
+      "description": "shirts",
+      "amount": 1000,
+      "date": "2024-02-21",
+      "category": "other",
+      "username": "shubham@123",
+      "id": 17
+    },
+    {
+      "description": "Shoes",
+      "amount": 6000,
+      "date": "2024-02-21",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 18
+    }
+  ]
+}

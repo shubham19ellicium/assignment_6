@@ -1,0 +1,235 @@
+:root {
+    --blue-background: rgb(53 174 195);
+    --black-button: rgb(86, 82, 82);
+    --white-header: white;
+    --header-width: 150px;
+    --burn-orange: #D34A44;
+    --blue-primary: #87C9DE;
+    --button-width: 120px;
+    --mat-black: #121417;
+    --glow-green: #1ED760;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+input:focus {
+    outline: none;
+}
+
+
+@font-face {
+    font-family: "ubuntu-regular";
+    src: URL("../assets/fonts/Ubuntu-Regular.ttf") format("truetype");
+}
+
+input[type="date"]
+{
+    font-family: "ubuntu-regular";
+}
+
+body {
+    font-family: "ubuntu-regular";
+}
+
+/* --------- Nav Bar ----------- */
+
+.bar {
+    padding: 0px 14px;
+    background-color: var(--blue-primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+}
+
+.bar.blur {
+    filter: blur(2px);
+    pointer-events: none;
+}
+
+.logo h3 {
+    color: black;
+    padding: 0px 0px;
+    cursor: pointer;
+}
+
+.logout{
+    height: 20px;
+}
+
+.logout-image{
+    height: 20px;
+    width: 20px;
+}
+
+/* --------- Nav Bar End ----------- */
+
+/* --------- grid display --------- */
+
+.grid-container{
+    height: 90vh;
+    display: grid;
+    grid-template-columns: 20vw 80vw;
+}
+
+.left-panel {
+    grid-column: 1 / 2;
+    background-color: #F0F0F5;
+    display: flex;
+    justify-content: center;
+}
+
+.right-panel {
+    grid-column: 2 / 2;
+}
+
+
+
+/* --------- grid display end --------- */
+
+/* --------- Side Panel ------------ */
+
+.left-panel-wrapper{
+    width: 90%;
+    
+}
+
+.price-block{
+    margin: 26px 0px;
+    width: 100%;
+    
+}
+
+.price-monthly-block{
+    margin: 8px 0px;
+    height: max-content;
+    background: rgb(175,219,233);
+    background: linear-gradient(143deg, rgba(175,219,233,1) 35%, rgba(135,201,222,1) 100%);
+    border-radius: 4px;
+    color: black;
+}
+
+.amount-display{
+    font-size: 26px;
+    padding: 8px 0px;
+    text-align: center;
+    color: black;
+}
+
+.amount-month{
+    padding-bottom: 8px;
+    text-align: center;
+}
+
+.icon-img{
+    height: 20px;
+    width: 20px;
+}
+
+.list-content{
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    background-color: aliceblue;
+    padding: 8px 4px;
+    margin: 4px 0px;
+    cursor: pointer;
+    box-shadow: 0px 1px 3px #888080;
+}
+
+.list-content:hover{
+    box-shadow: 0px 1px 6px #4f4c4c;
+}
+
+/* ------ Form ------ */
+
+
+.required-span{
+    color: red;
+}
+
+.submit-form {
+    margin: 32px;
+    padding: 32px;
+    box-shadow: 1px 2px 10px rgb(117, 115, 115);
+    width: 50%;
+    border-radius: 12px;
+}
+
+.form-header-block {
+    /* background-color: var(--blue-primary); */
+    /* padding: 8px; */
+    color: black;
+}
+
+.form-header {
+    margin: 12px;
+}
+
+.form-header-text {
+    margin: 0px 12px 12px 12px;
+}
+
+.form-element-block {
+    margin: 24px 0px;
+}
+
+.form-input-element-block {
+    margin: 8px 12px;
+}
+
+.form-input {
+    margin: 4px 0px;
+    padding: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-titile-block {
+    display: flex;
+    justify-content: space-between;
+}
+
+.error-message {
+    font-size: 14px;
+    color: red;
+    margin: 0px;
+}
+
+
+.priority-radio-block {
+    margin: 4px 0px;
+}
+
+.priority-input-block {
+    display: inline-flex;
+    align-items: center;
+    margin: 0px 8px 0px 0px;
+}
+
+.priority-input-block label {
+    font-size: 14px;
+}
+
+.button {
+    width: var(--button-width);
+    padding: 4px 0px;
+    background-color: var(--black-button);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+
+.pop-up-button-block {
+    display: flex;
+    justify-content: start;
+}
+
+/* ***** form block end***** */
