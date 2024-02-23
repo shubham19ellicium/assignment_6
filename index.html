@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="./style/style.css">
     <script defer src="./script/script.js"></script>
 </head>
@@ -19,7 +20,7 @@
 
     <div class="grid-container">
         <div class="left-container">
-            asdf
+            <img src="./assets/images/illust-02.jpg" class="illust-img" alt="">
         </div>
         <div class="right-container">
             <div class="form-wrapper">
@@ -31,19 +32,23 @@
                             <label for="email"><b>Name</b></label>
                             <p id="name-error-message"></p>
                         </div>
-                        <input type="text" placeholder="Enter name" name="name" id="name" required>
+                        <input type="text" placeholder="Enter name" name="name" id="name" autocomplete="off" required>
 
                         <div class="label-block">
                             <label for="email"><b>Username</b></label>
-                            <p id="username-error-message"></p>
+                            <p class="error-message" id="username-error-message"></p>
                         </div>
-                        <input type="text" placeholder="Enter Username" name="username" id="username" required>
+                        <input type="text" placeholder="Enter Username (only characters, numbers, and @)" name="username" id="username" autocomplete="off" pattern="\.*[a-zA-Z0-9@]+\.*" required>
 
                         <label for="psw"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+                        <input type="password" placeholder="Enter Password" name="psw" id="psw"  required>
 
-                        <label for="psw-repeat"><b>Repeat Password</b></label>
+                        <div class="label-block">
+                            <label for="psw-repeat"><b>Repeat Password</b></label>
+                            <p class="error-message" id="repeat-password-error-message"></p>
+                        </div>
                         <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+
                         <button type="submit" class="registerbtn">Register</button>
                     </div>
 
@@ -58,13 +63,16 @@
                         
                         <div class="label-block">
                             <label for="email"><b>Username</b></label>
-                            <p id="username-error-message"></p>
+                            <p class="error-message" id="username-sign-in-error-message"></p>
                         </div>
-                        <input type="text" placeholder="Enter Username" name="username" id="username-sign-in" required>
+                        <input type="text" placeholder="Enter Username" name="username" id="username-sign-in" autocomplete="off" required>
 
-                        <label for="psw"><b>Password</b></label>
+                        <div class="label-block">
+                            <label for="psw"><b>Password</b></label>
+                            <p class="error-message" id="password-sign-in-error-message"></p>
+                        </div>
                         <input type="password" placeholder="Enter Password" name="psw" id="psw-sign-in" required>
-
+                        <!-- <p class="error-message" id="invalid-error-message"></p> -->
                         <button type="submit" class="registerbtn">Login</button>
                     </div>
 
@@ -77,6 +85,9 @@
     </div>
 
     <div id="popup-register" class="popup">
+        <div class="close-icon">
+            <i class="fa-solid fa-xmark" onclick="closePopup()"></i>
+        </div>
         <div class="popup-content">
             <div class="seccess-img-block">
                 <img src="./assets/images/checked.png" class="success-img" alt="">
@@ -84,6 +95,19 @@
             <p>User registered Successfully</p>
         </div>
     </div>
+
+    <div id="popup-delete" class="popup">
+        <div class="close-icon">
+            <i class="fa-solid fa-xmark" onclick="closePopup()"></i>
+        </div>
+        <div class="popup-content">
+            <div class="seccess-img-block">
+                <img id="popup-image-id"  class="success-img" alt="status image">
+            </div>
+            <p id="message-text-id"></p>
+        </div>
+    </div>
+    
 
 </body>
 

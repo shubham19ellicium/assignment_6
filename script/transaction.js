@@ -2,21 +2,50 @@ let PAGE_COUNT = 10
 let PAGE_NUMBER = 1
 let PAGE_END_INDEX = '';
 
+let DISPLAY_MONTH_TOTAL = document.getElementById("amount-display-id")
+let DISPLAY_DAY_TOTAL = document.getElementById("amount-day-display-id")
+
+let AMOUNT_INPUT = document.getElementById("amount-id")
+let AMOUNT_INPUT_ERROR = document.getElementById("amount-error-id")
+let NAME_INPUT = document.getElementById("name-id")
+let NAME_INPUT_ERROR = document.getElementById("name-error-id")
+let DATE_INPUT = document.getElementById("date-input")
+let DATE_INPUT_ERROR = document.getElementById("date-error-id")
+let SELECT_CAT_INPUT = document.getElementById("select-category-id")
+let SELECT_CAT_INPUT_ERROR = document.getElementById("select-category-error-id")
+
+var updatedCheckId
+var UPDATE_POP_UP = document.getElementById("pop-for-upload")
+
+let POPUP_BLOCK = document.getElementById("popup-delete")
+let POPUP_MESSAGE_TEXT_BLOCK = document.getElementById("message-text-id")
+let POPUP_IMAGE_BLOCK = document.getElementById("popup-image-id")
+
 var WRAPPER = document.getElementById("table-wrapper-id")
 
 var STORE_ARRAY = []
 
-document.addEventListener("DOMContentLoaded", function() {
+document.getElementById("level-id-3").style.backgroundColor = "#c4e4ef"
+
+document.addEventListener("DOMContentLoaded", function () {
     var selectedValue = document.getElementById("select-option-id");
     console.log("RUN AFTER RELOAD");
-    console.log("SESSION LOG :: ",sessionStorage.getItem("page-total-list"));
-    console.log("PAGE NUMBER :: ",sessionStorage.getItem("page-number"));
-    console.log("PAGE COUNT :: ",sessionStorage.getItem("page-count"));
+    console.log("SESSION LOG :: ", sessionStorage.getItem("page-total-list"));
+    console.log("PAGE NUMBER :: ", sessionStorage.getItem("page-number"));
+    console.log("PAGE COUNT :: ", sessionStorage.getItem("page-count"));
+    
+    let newPageCount 
+    if (sessionStorage.getItem("page-total-list") == null) {
+        newPageCount = 10
+    }else{
+        newPageCount = parseInt(sessionStorage.getItem("page-total-list"), 10)
+    }
+
     if (sessionStorage.getItem("page-number") != null && sessionStorage.getItem("page-count") != null) {
         PAGE_NUMBER = parseInt(sessionStorage.getItem("page-number"), 10)
         PAGE_COUNT = parseInt(sessionStorage.getItem("page-count"), 10)
-        selectedValue.value = parseInt(sessionStorage.getItem("page-total-list"), 10)
-        selectedValue.options[selectedValue.selectedIndex].text = sessionStorage.getItem("page-total-list")
+        selectedValue.value = parseInt(newPageCount, 10)
+        selectedValue.options[selectedValue.selectedIndex].text = newPageCount
         sessionStorage.removeItem("page-number")
         sessionStorage.removeItem("page-count")
         sessionStorage.removeItem("page-total-list")
@@ -31,14 +60,14 @@ if (USER_NAME_SESSION === null || USER_NAME_SESSION.length === 0) {
     window.location.href = "index.html";
 }
 
-String.prototype.capitalizeFirstLetter = function() {
+String.prototype.capitalizeFirstLetter = function () {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
 const fetchTransactionData = async () => {
-    const response = await fetch(`http://localhost:3000/expense?username=${USER_NAME_SESSION}`);
+    const response = await fetch(`http://localhost:3000/expense?username=${USER_NAME_SESSION}&_sort=id&_order=desc`);
     const jsonData = await response.json();
-    console.log("JSON :: ", jsonData);
+    console.log("JSON ::->> ", jsonData);
 
     PAGE_END_INDEX = Math.ceil(jsonData.length / PAGE_COUNT)
     responseJsonLength = jsonData.length
@@ -107,6 +136,42 @@ const fetchTodaysData = async () => {
     // renderDataFromArray()
 }
 
+const fetchDataForThisMonth = async () => {
+    let dates = getStartDateAndEndDate()
+    const response = await fetch(`http://localhost:3000/expense?username=${USER_NAME_SESSION}&date_gte=${dates.firstDay}&date_lte=${dates.lastDay}`);  // http://localhost:3000/expense?date_gte=2024-02-20&date_lte=2024-02-22
+    const jsonData = await response.json();
+
+    let totalValue = jsonData.reduce((holder, current) => {
+        let sum = holder + current.amount
+        return sum
+    }, 0)
+
+    DISPLAY_MONTH_TOTAL.innerText = formatNumberToPrice(totalValue)
+}
+
+const fetchDataForCurrentDay = async () => {
+    const response = await fetch(`http://localhost:3000/expense?username=${USER_NAME_SESSION}&date=${todaysDate()}`);  // http://localhost:3000/expense?date_gte=2024-02-20&date_lte=2024-02-22
+    const jsonData = await response.json();
+    console.log("JSON :: ", jsonData);
+
+    let totalValue = jsonData.reduce((holder, current) => {
+        let sum = holder + current.amount
+        return sum
+    }, 0)
+
+    DISPLAY_DAY_TOTAL.innerText = formatNumberToPrice(totalValue)
+}
+
+const fetchSingleData = async (id) => {
+    const response = await fetch(`http://localhost:3000/expense?id=${id}`);  // http://localhost:3000/expense?date_gte=2024-02-20&date_lte=2024-02-22
+    const jsonData = await response.json();
+    console.log("JSON :: ", jsonData);
+    return jsonData
+}
+
+fetchDataForThisMonth()
+fetchDataForCurrentDay()
+
 function renderDataFromArray() {
 
     while (WRAPPER.lastChild) {
@@ -123,6 +188,15 @@ function renderDataFromArray() {
     });
 
     updateIndex()
+}
+
+function digitCheck(input) {
+    var reg = /^\d+$/;
+    if (reg.test(input) === true) {
+        return true
+    } else {
+        return false
+    }
 }
 
 function updateIndex() {
@@ -155,8 +229,29 @@ function createHtml(data) {
     return td;
 }
 
-function handleEdit(id) {
+async function handleEdit(id) {
     console.log("EDIT ID :: ", id);
+    var userResponse = await fetchSingleData(id)
+    updatedCheckId = userResponse[0].id
+    console.log("DESC :: ", userResponse[0].description);
+    NAME_INPUT.value = userResponse[0].description
+    AMOUNT_INPUT.value = userResponse[0].amount
+    DATE_INPUT.value = userResponse[0].date
+    SELECT_CAT_INPUT.value = userResponse[0].category
+
+    document.getElementById('overlay').style.display = 'block';
+    UPDATE_POP_UP.classList.add("active")
+
+    document.getElementById('bar-id').classList.add("blur")
+    document.getElementById('grid-id').classList.add("blur")
+}
+
+function closeAddPopup() {
+    document.getElementById('overlay').style.display = 'none';
+    UPDATE_POP_UP.classList.remove("active")
+
+    document.getElementById('bar-id').classList.remove("blur")
+    document.getElementById('grid-id').classList.remove("blur")
 }
 
 function handleDelete(id) {
@@ -174,14 +269,16 @@ function handleDelete(id) {
     }).then(data => {
         console.log("RESPONSE DATA :: ", data.status)
         if (data.status == 200) {
-            document.getElementById("popup-delete").style.display = "block";
-            setTimeout(closePopup, 3000);
+            POPUP_BLOCK.style.display = "block";
+            POPUP_MESSAGE_TEXT_BLOCK.innerText = "Data Deleted successfully"
+            POPUP_IMAGE_BLOCK.src = "../assets/images/remove.png"
+            setTimeout(closePopup, 1500);
         }
     })
 }
 
 function closePopup() {
-    document.getElementById("popup-delete").style.display = "none";
+    POPUP_BLOCK.style.display = "none";
     location.reload();
 }
 
@@ -354,6 +451,27 @@ function handleDataSort(param) {
 }
 
 function handleSelectionChange() {
+
+    let arrow1 = document.getElementById("arr1")
+    let arrow2 = document.getElementById("arr2")
+    let arrow3 = document.getElementById("arr3")
+    let arrow4 = document.getElementById("arr4")
+
+    arrow1.classList.remove("active")
+    arrow2.classList.remove("active")
+    arrow3.classList.remove("active")
+    arrow4.classList.remove("active")
+
+    arrow1.style.transform = `rotate(${0}deg)`;
+    arrow2.style.transform = `rotate(${0}deg)`;
+    arrow2.style.transform = `rotate(${0}deg)`;
+    arrow3.style.transform = `rotate(${0}deg)`;
+
+    descriptionFlag = 0
+    amountFlag = 0
+    dateFlag = 0
+    categoryFlag = 0
+
     var selectedValue = document.getElementById("select-option-id").value;
     PAGE_NUMBER = 1
     PAGE_COUNT = selectedValue
@@ -363,7 +481,7 @@ function handleSelectionChange() {
 let toggleFlag = false
 function handleToggleButton() {
     toggleFlag = !toggleFlag
-    console.log("TOGGLE FLAG :: ",toggleFlag);
+    console.log("TOGGLE FLAG :: ", toggleFlag);
     if (toggleFlag === true) {
         fetchTodaysData()
     }
@@ -378,6 +496,128 @@ function todaysDate() {
 
     var day = new Date(`${yyyy}-${mm}-${dd}`).toLocaleDateString('en-CA')
     return day
+}
+
+function formatNumberToPrice(number) {
+    var format = new Intl.NumberFormat('en-IN', {
+        style: 'currency',
+        currency: 'INR',
+        minimumFractionDigits: 1,
+    });
+
+    return format.format(number)
+}
+
+function getStartDateAndEndDate() {
+
+    var date = new Date();
+    var firstDay = new Date(date.getFullYear(), date.getMonth(), 1).toLocaleDateString('en-CA');
+    var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).toLocaleDateString('en-CA');
+    return {
+        firstDay,
+        lastDay
+    }
+}
+
+function handleEditData() {
+    event.preventDefault()
+    var idUpdate = updatedCheckId
+    var name = NAME_INPUT.value
+    var amount = AMOUNT_INPUT.value
+    var selectCat = SELECT_CAT_INPUT.value
+
+    var selectedValue = document.getElementById("select-option-id").value;
+    sessionStorage.setItem("page-number", PAGE_NUMBER)
+    sessionStorage.setItem("page-count", PAGE_COUNT)
+    sessionStorage.setItem("page-total-list", selectedValue)
+
+    fetch("http://localhost:3000/expense/" + idUpdate, {
+        method: "PATCH",
+        body: JSON.stringify({
+            description: name,
+            amount: parseInt(amount.trim()),
+            category: selectCat,
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    }).then(data => {
+        console.log("RESPONSE DATA :: ", data.status)
+        // handleClosePopup()
+        closeAddPopup()
+        if (data.status == 200) {
+            POPUP_BLOCK.style.display = "block";
+            POPUP_MESSAGE_TEXT_BLOCK.innerText = "Data Updated successfully"
+            POPUP_IMAGE_BLOCK.src = "../assets/images/checked.png"
+            setTimeout(closePopup, 1500);
+        }
+    }).catch(error => {
+        console.error("Something went wrong", error);
+    });
+
+
+}
+
+AMOUNT_INPUT.addEventListener("keyup", (e) => {
+    if (e.target.value) {
+        var alphabetPressed = digitCheck(e.target.value)
+    }
+    if (alphabetPressed === false) {
+        AMOUNT_INPUT_ERROR.innerText = "Only number allowed"
+    } else if (e.target.value.length === 0) {
+        AMOUNT_INPUT_ERROR.innerText = "Field required"
+    } else {
+        AMOUNT_INPUT_ERROR.innerText = ""
+    }
+    // e.target.value = e.target.value.replace(/\D/g, '');
+});
+
+NAME_INPUT.addEventListener("keyup", (e) => {
+    // if (e.target.value) {
+    //     var alphabetPressed = nameCheck(e.target.value)
+    // }
+
+    if (e.target.value.length === 0) {
+        NAME_INPUT_ERROR.innerText = "Field required"
+    }else if (e.target.value.length === 50) {
+        NAME_INPUT_ERROR.innerText = "Reached Max Limit"
+        setTimeout(()=>{
+            NAME_INPUT_ERROR.innerText = ""
+        },1000)
+    } else {
+        NAME_INPUT_ERROR.innerText = ""
+    }
+})
+
+DATE_INPUT.addEventListener("input", (e) => {
+    let selectedDate = new Date(e.target.value)
+    let todayDate = todaysDate()
+    if (selectedDate.toLocaleDateString('en-CA') > todayDate) {
+        DATE_INPUT_ERROR.innerText = "Date should not be in future"
+    } else {
+        DATE_INPUT_ERROR.innerText = ""
+    }
+})
+
+SELECT_CAT_INPUT.addEventListener("input", (e) => {
+    console.log("e : ", e.target.value);
+    if (e.target.value === "none") {
+        SELECT_CAT_INPUT_ERROR.innerText = "Please select category"
+    } else {
+        SELECT_CAT_INPUT_ERROR.innerText = ""
+    }
+})
+
+function handleLogout(){
+    sessionStorage.clear()
+    window.location.href = "index.html";
+
+}
+
+function handleSwitchToTodayExpense() {
+    sessionStorage.setItem("page-number", 1)
+    sessionStorage.setItem("page-count", 10)
+    location.href='todayTransaction.html'
 }
 
 fetchTransactionData()

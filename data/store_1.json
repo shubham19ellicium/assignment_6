@@ -13,8 +13,8 @@
       "id": 2
     },
     {
-      "name": "test2",
-      "username": "test2@123",
+      "name": "Chetan",
+      "username": "chetan@123",
       "password": "123",
       "id": 3
     }
@@ -35,44 +35,20 @@
       "id": 2
     },
     {
-      "description": "Petro",
-      "amount": 100,
-      "date": "2024-02-14",
-      "category": "Miscellaneous",
-      "username": "shubham@123",
-      "id": 3
-    },
-    {
-      "description": "Rice",
-      "amount": 100,
+      "description": "Rice 1Kg",
+      "amount": 130,
       "date": "2024-02-20",
-      "category": "Food",
+      "category": "Miscellaneous",
       "username": "shubham@123",
       "id": 4
     },
     {
-      "description": "Grape",
-      "amount": 1500,
-      "date": "2024-02-20",
-      "category": "Food",
-      "username": "shubham@123",
-      "id": 5
-    },
-    {
-      "description": "Wheet",
-      "amount": 500,
+      "description": "sdf sdajf sdklf jsaldfj ;sjfls jfl;sjd flj    jlsd",
+      "amount": 100000,
       "date": "2024-02-20",
       "category": "Food",
       "username": "shubham@123",
       "id": 6
-    },
-    {
-      "description": "Chicken",
-      "amount": 1200,
-      "date": "2024-02-20",
-      "category": "Food",
-      "username": "shubham@123",
-      "id": 7
     },
     {
       "description": "Dr visit",
@@ -83,18 +59,10 @@
       "id": 8
     },
     {
-      "description": "Movie",
-      "amount": 200,
-      "date": "2024-02-20",
-      "category": "Entertainment",
-      "username": "shubham@123",
-      "id": 9
-    },
-    {
       "description": "Random things",
       "amount": 5200,
       "date": "2024-02-20",
-      "category": "Other",
+      "category": "Miscellaneous",
       "username": "shubham@123",
       "id": 9
     },
@@ -118,33 +86,9 @@
       "description": "Mobile",
       "amount": 20000,
       "date": "2024-02-20",
-      "category": "Other",
+      "category": "Miscellaneous",
       "username": "shubham@123",
       "id": 11
-    },
-    {
-      "description": "bat",
-      "amount": 1200,
-      "date": "2024-02-20",
-      "category": "Other",
-      "username": "shubham@123",
-      "id": 12
-    },
-    {
-      "description": "cooking oil",
-      "amount": 70,
-      "date": "2024-02-20",
-      "category": "Food",
-      "username": "shubham@123",
-      "id": 13
-    },
-    {
-      "description": "test 1",
-      "amount": 123,
-      "date": "2024-02-21",
-      "category": "Housing",
-      "username": "shubham@123",
-      "id": 14
     },
     {
       "description": "kitchen tools",
@@ -155,20 +99,308 @@
       "id": 16
     },
     {
-      "description": "shirts",
-      "amount": 1000,
-      "date": "2024-02-21",
-      "category": "other",
-      "username": "shubham@123",
-      "id": 17
-    },
-    {
       "description": "Shoes",
       "amount": 6000,
       "date": "2024-02-21",
       "category": "Miscellaneous",
       "username": "shubham@123",
       "id": 18
+    },
+    {
+      "description": "Mangos 3d",
+      "amount": 1200,
+      "date": "2024-02-21",
+      "category": "Food",
+      "username": "shubham@123",
+      "id": 19
+    },
+    {
+      "description": "test",
+      "amount": 122,
+      "date": "2024-02-21",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 21
+    },
+    {
+      "description": "test 1",
+      "amount": 111,
+      "date": "2024-02-21",
+      "category": "Transportation",
+      "username": "shubham@123",
+      "id": 22
+    },
+    {
+      "description": "Netflix",
+      "amount": 220,
+      "date": "2024-02-21",
+      "category": "Entertainment",
+      "username": "shubham@123",
+      "id": 24
+    },
+    {
+      "description": "cleaning tool",
+      "amount": 2000,
+      "date": "2024-02-20",
+      "category": "Housing",
+      "username": "shubham@123",
+      "id": 25
+    },
+    {
+      "description": "Party",
+      "amount": 10000,
+      "date": "2024-02-21",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 26
+    },
+    {
+      "description": "Party",
+      "amount": 12000,
+      "date": "2024-02-24",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 27
+    },
+    {
+      "description": "Jan Test Data",
+      "amount": 1000,
+      "date": "2024-01-23",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 29
+    },
+    {
+      "description": "Hair cut",
+      "amount": 100,
+      "date": "2024-02-21",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 30
+    },
+    {
+      "description": "Car wash",
+      "amount": 100,
+      "date": "2024-02-21",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 32
+    },
+    {
+      "description": "Petrol",
+      "amount": 1000,
+      "date": "2024-02-21",
+      "category": "Transportation",
+      "username": "test@123",
+      "id": 33
+    },
+    {
+      "description": "Paneer",
+      "amount": 250,
+      "date": "2024-02-20",
+      "category": "Food",
+      "username": "test@123",
+      "id": 34
+    },
+    {
+      "description": "Food (Edit 5)",
+      "amount": 1000,
+      "date": "2024-02-22",
+      "category": "Food",
+      "username": "shubham@123",
+      "id": 35
+    },
+    {
+      "description": "Bus",
+      "amount": 20,
+      "date": "2024-02-21",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 37
+    },
+    {
+      "description": "Taxi",
+      "amount": 120,
+      "date": "2024-02-22",
+      "category": "Transportation",
+      "username": "shubham@123",
+      "id": 38
+    },
+    {
+      "description": "Shopping",
+      "amount": 111,
+      "date": "2024-02-22",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 39
+    },
+    {
+      "description": "Money",
+      "amount": 2000,
+      "date": "2024-02-21",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 40
+    },
+    {
+      "description": "Groceries",
+      "amount": 75,
+      "date": "2024-02-22",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 41
+    },
+    {
+      "description": "Gasoline",
+      "amount": 50,
+      "date": "2024-02-22",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 42
+    },
+    {
+      "description": "Dinner with friends (split bill)",
+      "amount": 150,
+      "date": "2024-02-22",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 43
+    },
+    {
+      "description": "Movie tickets",
+      "amount": 30,
+      "date": "2024-02-22",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 44
+    },
+    {
+      "description": "Clothing",
+      "amount": 120,
+      "date": "2024-02-22",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 46
+    },
+    {
+      "description": "Electronics",
+      "amount": 300,
+      "date": "2024-02-22",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 47
+    },
+    {
+      "description": "Home decor",
+      "amount": 80,
+      "date": "2024-02-22",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 48
+    },
+    {
+      "description": "Gym membership",
+      "amount": 200,
+      "date": "2024-02-22",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 49
+    },
+    {
+      "description": "Fuel (Edit 2)",
+      "amount": 1000,
+      "date": "2024-02-22",
+      "category": "Transportation",
+      "username": "chetan@123",
+      "id": 50
+    },
+    {
+      "description": "House Rent",
+      "amount": 12000,
+      "date": "2024-02-01",
+      "category": "Housing",
+      "username": "chetan@123",
+      "id": 51
+    },
+    {
+      "description": "House Rent (Jan)",
+      "amount": 12000,
+      "date": "2024-01-01",
+      "category": "Housing",
+      "username": "chetan@123",
+      "id": 52
+    },
+    {
+      "description": "Test (edit)",
+      "amount": 1000,
+      "date": "2024-02-22",
+      "category": "Miscellaneous",
+      "username": "chetan@123",
+      "id": 53
+    },
+    {
+      "description": "adsfg",
+      "amount": 0,
+      "date": "1992-02-22",
+      "category": "Housing",
+      "username": "shubham@123",
+      "id": 55
+    },
+    {
+      "description": "Petrol",
+      "amount": 100,
+      "date": "2024-02-22",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 56
+    },
+    {
+      "description": "Food",
+      "amount": 200,
+      "date": "2024-02-22",
+      "category": "Food",
+      "username": "shubham@123",
+      "id": 57
+    },
+    {
+      "description": "Bike repair",
+      "amount": 2000,
+      "date": "2024-03-22",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 58
+    },
+    {
+      "description": "fdsfdsfds",
+      "amount": 23353,
+      "date": "2024-02-21",
+      "category": "Health",
+      "username": "shubham@123",
+      "id": 59
+    },
+    {
+      "description": "iuoiuio",
+      "amount": 1232,
+      "date": "2024-02-18",
+      "category": "Housing",
+      "username": "shubham@123",
+      "id": 60
+    },
+    {
+      "description": "piuy",
+      "amount": 65,
+      "date": "2024-02-20",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 61
+    },
+    {
+      "description": "Petrol",
+      "amount": 100,
+      "date": "2024-02-23",
+      "category": "Transportation",
+      "username": "shubham@123",
+      "id": 62
     }
   ]
 }

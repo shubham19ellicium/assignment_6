@@ -4,18 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="./style/dashboard.css">
+    <script src="//cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="//cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="//cdn.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="//cdn.amcharts.com/lib/4/themes/kelly.js"></script>
     <script defer src="./script/dashboard.js"></script>
 </head>
 
 <body>
     <nav class="bar" id="bar-id">
         <div class="logo">
-            <h3 onclick="location.href='index.html'">Personal Expense Tracker</h3>
+            <h3 onclick="location.href='dashboard.html'">Personal Expense Tracker</h3>
         </div>
         <div class="logout">
-            <img src="./assets/images/logout.png" class="logout-image" alt="">
+            <img src="./assets/images/logout.png" onclick="handleLogout()" class="logout-image" alt="">
         </div>
 
     </nav>
@@ -25,15 +30,15 @@
             <div class="left-panel-wrapper">
                 <div class="price-block">
                     <div class="price-monthly-block">
-                        <p class="amount-display" id="amount-display-id">10,000</p>
-                        <p class="amount-month" id="amount-month-id">Current month total</p>
+                        <p class="amount-display" id="amount-display-id"></p>
+                        <p class="amount-month">Total Expenses for the Current Month</p>
                     </div>
                     <div class="price-monthly-block">
-                        <p class="amount-display" id="amount-display-id">10,000</p>
-                        <p class="amount-month" id="amount-month-id">Today total</p>
+                        <p class="amount-display" id="amount-day-display-id"></p>
+                        <p class="amount-month">Total Amount Spent Today</p>
                     </div>
                 </div>
-                <div class="list-block">
+                <!-- <div class="list-block">
                     <div class="list-content" >
                         <div class="icon">
                             <img src="./assets/images/dashboard.png" class="icon-img" alt="">
@@ -57,10 +62,29 @@
                         <div class="icon-marker" >
                             <p >Transactions</p>
                         </div>
-                    </div>
-                </div>
+                    </div> -->
+                <p class="menu-title">MENU</p>
+                <ul class="sidebar-menu">
+                    <li class="menu-item" id="level-id-1">
+                        <img src="./assets/images/dashboard.png" class="icon-img" alt="">
+                        <p>Dashboard</p>
+                    </li>
+                    <li class="menu-item" id="level-id-2" onclick="location.href='todayTransaction.html'">
+                        <img src="./assets/images/expenses.png" class="icon-img" alt="">
+                        <p>Today's Expense</p>
+                    </li>
+                    <li class="menu-item" id="level-id-3" onclick="location.href='transection.html'">
+                        <img src="./assets/images/transaction.png" class="icon-img" alt="">
+                        <p>All Transactions</p>
+                    </li>
+                    <!-- <li class="menu-item" id="level-id-3" onclick="location.href='chart.html'">
+                        <img src="./assets/images/transaction.png" class="icon-img" alt="">
+                        <p>Chart</p>
+                    </li> -->
+                </ul>
             </div>
         </div>
+
         <div class="right-panel">
             <div class="form-container">
                 <form onsubmit="handleUploadData()" class="submit-form">
@@ -73,44 +97,43 @@
                     <div class="form-element-block">
                         <div class="form-input-element-block">
                             <div class="form-titile-block">
-                                <label for=""><span class="required-span">* </span>Name</label>
+                                <label for="name-id"><span class="required-span">* </span>Description</label>
                                 <p class="error-message" id="name-error-id"></p>
                             </div>
-                            <input type="text" class="form-input" placeholder="Enter expense name"
-                                name="expense-name" id="name-id" maxlength="50"
-                                autocomplete="off" required>
+                            <input type="text" class="form-input" placeholder="Enter expense description" name="expense-name"
+                                id="name-id" maxlength="50" autocomplete="off" required>
                         </div>
                         <div class="form-input-element-block">
                             <div class="form-titile-block">
-                                <label for="amount">
+                                <label for="amount-id">
                                     <span class="required-span">* </span>Amount
                                 </label>
                                 <p class="error-message" id="amount-error-id"></p>
                             </div>
-                            <input type="text" class="form-input" placeholder="Enter expense amount"
-                                name="amount" id="amount-id" maxlength="50"
-                                autocomplete="off" required>
+                            <!-- <input type="number" class="form-input" placeholder="Enter expense amount" name="amount"
+                                id="amount-id" maxlength="50" autocomplete="off" required> -->
+                            <input type="text" class="form-input" placeholder="Enter expense amount" name="amount" id="amount-id" maxlength="6" autocomplete="off" required pattern="[0-9]+" title="Please enter only numers">
+
                         </div>
                         <div class="form-input-element-block">
                             <div class="form-titile-block">
-                                <label for="">
+                                <label for="date-input">
                                     <span class="required-span">* </span>Date
                                 </label>
                                 <p class="error-message" id="date-error-id"></p>
                             </div>
-                            <input type="date" id="date-input" class='form-input'
-                                required />
+                            <input type="date" id="date-input" class='form-input' required />
                         </div>
 
                         <div class="form-input-element-block">
                             <div class="form-titile-block">
-                                <label for="select category">
+                                <label for="select-category-id">
                                     <span class="required-span">* </span>Category
                                 </label>
                                 <p class="error-message" id="select-category-error-id"></p>
                             </div>
-                            <select name="select category" id="select-category-id" class='form-input'>
-                                <option value="none" >Select your category</option>
+                            <select name="select category" id="select-category-id" class='form-input' title="Choose a category">
+                                <option value="none">Select your category</option>
                                 <option value="Miscellaneous">Miscellaneous</option>
                                 <option value="Housing">Housing</option>
                                 <option value="Transportation">Transportation</option>
@@ -119,7 +142,6 @@
                                 <option value="Debt Payments">Debt Payments</option>
                                 <option value="Entertainment">Entertainment</option>
                                 <option value="Savings and Investments">Savings and Investments</option>
-                                <option value="other">Other</option>
                             </select>
                         </div>
                     </div>
@@ -129,6 +151,21 @@
                     </div>
                 </form>
             </div>
+            <div class="chart-display" id="chartdiv"></div>
+        </div>
+    </div>
+
+    
+
+    <div id="popup-delete" class="popup">
+        <div class="close-icon">
+            <i class="fa-solid fa-xmark" onclick="closePopup()"></i>
+        </div>
+        <div class="popup-content">
+            <div class="seccess-img-block">
+                <img id="popup-image-id" class="success-img" alt="">
+            </div>
+            <p id="message-text-id"></p>
         </div>
     </div>
 </body>

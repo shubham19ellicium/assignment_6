@@ -4,7 +4,7 @@
     --white-header: white;
     --header-width: 150px;
     --burn-orange: #D34A44;
-    --blue-primary: #2564CF;
+    --blue-primary: #87C9DE;
     --button-width: 120px;
 }
 
@@ -30,7 +30,7 @@ body {
 /* --------- Nav Bar ----------- */
 
 .bar {
-    padding: 0px 0px;
+    padding: 0px 14px;
     background-color: var(--blue-primary);
     display: flex;
     justify-content: space-between;
@@ -44,8 +44,8 @@ body {
 }
 
 .logo h3 {
-    color: white;
-    padding: 0px 8px;
+    color: black;
+    padding: 0px 0px;
     cursor: pointer;
 }
 
@@ -61,7 +61,9 @@ body {
 
 .left-container {
     grid-column: 1 / 2;
-    background-color: #D34A44;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .right-container {
@@ -126,7 +128,7 @@ input[type=password]:focus {
 
 /* Set a style for the submit button */
 .registerbtn {
-    background-color: #04AA6D;
+    background-color: var(--black-button);
     color: white;
     padding: 16px 20px;
     margin: 8px 0;
@@ -149,6 +151,7 @@ a {
 .signin {
     background-color: #f1f1f1;
     text-align: center;
+    margin: 0px 16px;
 }
 
 .label-block{
@@ -164,6 +167,29 @@ a {
 
 .signin-link :hover{
     text-decoration: underline;
+}
+
+.error-message{
+    color: red;
+}
+
+#invalid-error-message{
+    color: red;
+}
+
+.close-icon{
+    text-align: end;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+}
+
+.close-icon i{
+    cursor: pointer;
+}
+
+.close-icon i:hover{
+    scale: 1.1;
 }
 
 /* --------------- FORM BLOCK END ---------------- */
@@ -222,3 +248,8 @@ a {
 
 
 /* ++++++++++++++++++++++ */
+
+.illust-img{
+    height: 500px;
+    width: auto;
+}

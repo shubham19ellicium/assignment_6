@@ -26,8 +26,24 @@ input:focus {
     src: URL("../assets/fonts/Ubuntu-Regular.ttf") format("truetype");
 }
 
-input[type="date"]
-{
+input[type="date"] {
+    font-family: "ubuntu-regular";
+}
+
+input[type="text"] {
+    font-family: "ubuntu-regular";
+}
+
+::placeholder {
+    font-family: "ubuntu-regular";
+}
+
+::-ms-input-placeholder {
+    /* Edge 12-18 */
+    font-family: "ubuntu-regular";
+}
+
+select {
     font-family: "ubuntu-regular";
 }
 
@@ -57,23 +73,24 @@ body {
     cursor: pointer;
 }
 
-.logout{
-    height: 20px;
+.logout {
+    height: 25px;
 }
 
-.logout-image{
-    height: 20px;
-    width: 20px;
+.logout-image {
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
 }
 
 /* --------- Nav Bar End ----------- */
 
 /* --------- grid display --------- */
 
-.grid-container{
+.grid-container {
     height: 90vh;
     display: grid;
-    grid-template-columns: 20vw 80vw;
+    grid-template-columns: 20vw auto;
 }
 
 .left-panel {
@@ -85,6 +102,11 @@ body {
 
 .right-panel {
     grid-column: 2 / 2;
+    overflow-y: scroll;
+}
+
+.chart-display {
+    margin: 32px 0px;
 }
 
 
@@ -93,44 +115,47 @@ body {
 
 /* --------- Side Panel ------------ */
 
-.left-panel-wrapper{
+.left-panel-wrapper {
     width: 90%;
-    
+
 }
 
-.price-block{
+.price-block {
     margin: 26px 0px;
     width: 100%;
-    
+
 }
 
-.price-monthly-block{
+.price-monthly-block {
     margin: 8px 0px;
     height: max-content;
-    background: rgb(175,219,233);
-    background: linear-gradient(143deg, rgba(175,219,233,1) 35%, rgba(135,201,222,1) 100%);
+    background: rgb(175, 219, 233);
+    background: linear-gradient(143deg, rgba(175, 219, 233, 1) 35%, rgba(135, 201, 222, 1) 100%);
     border-radius: 4px;
     color: black;
+    overflow: hidden
 }
 
-.amount-display{
+.amount-display {
     font-size: 26px;
     padding: 8px 0px;
     text-align: center;
     color: black;
 }
 
-.amount-month{
+.amount-month {
+    padding: 0px 27px;
     padding-bottom: 8px;
     text-align: center;
+    font-size: 14px;
 }
 
-.icon-img{
+.icon-img {
     height: 20px;
     width: 20px;
 }
 
-.list-content{
+.list-content {
     display: inline-flex;
     align-items: center;
     gap: 16px;
@@ -142,14 +167,14 @@ body {
     box-shadow: 0px 1px 3px #888080;
 }
 
-.list-content:hover{
+.list-content:hover {
     box-shadow: 0px 1px 6px #4f4c4c;
 }
 
 /* ------ Form ------ */
 
 
-.required-span{
+.required-span {
     color: red;
 }
 
@@ -230,6 +255,107 @@ body {
 .pop-up-button-block {
     display: flex;
     justify-content: start;
+    margin: 12px;
 }
 
 /* ***** form block end***** */
+
+/* ---------- Pop up ---------- */
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f4f4f4;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 3;
+    width: 240px;
+}
+
+.close-icon {
+    text-align: end;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+}
+
+.close-icon i {
+    cursor: pointer;
+}
+
+.close-icon i:hover {
+    scale: 1.1;
+}
+
+.popup-content {
+    text-align: center;
+}
+
+.popup-content p {
+    margin: 8px 0px;
+}
+
+.seccess-img-block {
+    display: flex;
+    justify-content: center;
+}
+
+.success-img {
+    height: 50px;
+    width: 50px;
+}
+
+/* ---------- Pop up end ---------- */
+
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0px;
+}
+
+.menu-title {
+    font-weight: 500;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background-color: aliceblue;
+    padding: 8px 16px;
+    margin: 4px 0px;
+    cursor: pointer;
+    box-shadow: 0px 1px 3px #888080;
+    transition: box-shadow 0.3s ease;
+    border-radius: 3px;
+}
+
+.menu-item:hover {
+    box-shadow: 0px 1px 6px #4f4c4c;
+    background-color: rgb(226, 241, 254);
+}
+
+/* ----------- Chart -------------- */
+
+#chartdiv {
+    width: 98%;
+    height: 400px;
+}
+
+/* -------------------------------- */
+
+@media only screen and (min-width: 500px) {
+    .grid-container {
+        grid-template-columns: 0% auto;
+    }
+
+    .left-panel{
+        display: none;
+    }
+}

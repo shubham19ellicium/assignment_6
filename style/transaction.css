@@ -1,3 +1,5 @@
+
+
 /* -------------------- TABLE --------------------------- */
 
 .right-panel{
@@ -22,7 +24,7 @@ table {
 
 table thead th {
     color: black;
-    background: var(--table-header);
+    background: #F0F0F5;
     /* background: #545454; */
     padding: 15px;
     border: 1px solid #ebebec;
@@ -57,6 +59,7 @@ table tr td {
 .icon-image {
     height: 15px;
     width: 15px;
+    cursor: pointer;
 }
 
 tr:hover {
@@ -166,6 +169,11 @@ tr:hover {
 }
 
 .bar.blur{
+    filter: blur(2px);
+    pointer-events: none;
+}
+
+.grid-container.blur{
     filter: blur(2px);
     pointer-events: none;
 }
@@ -290,3 +298,45 @@ form.example button:hover {
 }
 
 /* ---------- Pop up end ---------- */
+
+/* ----------- Form pop up ----------- */
+
+/* ____________________OVERLAY________________ */
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.form-block{
+    display: none;
+}
+
+.form-block.active{
+    display: block;
+    box-shadow: 1px 1px 10px black;
+    border-radius: 12px;
+    width: 560px;
+    position: fixed;
+    top: 32px;
+    background-color: white;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.submit-form {
+    padding: 32px;
+    border-radius: 12px;
+    margin: 0px;
+    width: 100%;
+}
+
+/* ----------- Form pop up end ----------- */
