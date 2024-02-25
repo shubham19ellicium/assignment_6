@@ -348,7 +348,7 @@
     },
     {
       "description": "Petrol",
-      "amount": 100,
+      "amount": 150,
       "date": "2024-02-22",
       "category": "Miscellaneous",
       "username": "shubham@123",
@@ -401,6 +401,22 @@
       "category": "Transportation",
       "username": "shubham@123",
       "id": 62
+    },
+    {
+      "description": "Food",
+      "amount": 100,
+      "date": "2024-02-23",
+      "category": "Food",
+      "username": "shubham@123",
+      "id": 63
+    },
+    {
+      "description": "Gas bill",
+      "amount": 2200,
+      "date": "2024-02-25",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 64
     }
   ]
 }

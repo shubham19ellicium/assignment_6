@@ -16,6 +16,7 @@
 
 <body>
     <nav class="bar" id="bar-id">
+        <img src="./assets/images/menu.png" id="hamburger-menu" onclick="displaySideBar()" class="logout-image"></img>
         <div class="logo">
             <h3 onclick="location.href='dashboard.html'">Personal Expense Tracker</h3>
         </div>
@@ -24,9 +25,9 @@
         </div>
 
     </nav>
-
-    <div class="grid-container">
-        <div class="left-panel">
+    <!-- <button onclick="displaySideBar()" class="toogle-nav">Toggle Nav</button> -->
+    <div id="grid-container-id" class="grid-container">
+        <div id="left-panel-id" class="left-panel">
             <div class="left-panel-wrapper">
                 <div class="price-block">
                     <div class="price-monthly-block">
@@ -38,50 +39,28 @@
                         <p class="amount-month">Total Amount Spent Today</p>
                     </div>
                 </div>
-                <!-- <div class="list-block">
-                    <div class="list-content" >
-                        <div class="icon">
+                <div>
+                    <p class="menu-title">MENU</p>
+                    <ul class="sidebar-menu">
+                        <li class="menu-item" id="level-id-1">
                             <img src="./assets/images/dashboard.png" class="icon-img" alt="">
-                        </div>
-                        <div class="icon-marker">
                             <p>Dashboard</p>
-                        </div>
-                    </div>
-                    <div class="list-content" onclick="location.href='todayTransaction.html'">
-                        <div class="icon">
+                        </li>
+                        <li class="menu-item" id="level-id-2" onclick="location.href='todayTransaction.html'">
                             <img src="./assets/images/expenses.png" class="icon-img" alt="">
-                        </div>
-                        <div class="icon-marker" >
-                            <p >Today's Transactions</p>
-                        </div>
-                    </div>
-                    <div class="list-content" onclick="location.href='transection.html'">
-                        <div class="icon">
+                            <p>Today's Expense</p>
+                        </li>
+                        <li class="menu-item" id="level-id-3" onclick="location.href='transection.html'">
                             <img src="./assets/images/transaction.png" class="icon-img" alt="">
-                        </div>
-                        <div class="icon-marker" >
-                            <p >Transactions</p>
-                        </div>
-                    </div> -->
-                <p class="menu-title">MENU</p>
-                <ul class="sidebar-menu">
-                    <li class="menu-item" id="level-id-1">
-                        <img src="./assets/images/dashboard.png" class="icon-img" alt="">
-                        <p>Dashboard</p>
-                    </li>
-                    <li class="menu-item" id="level-id-2" onclick="location.href='todayTransaction.html'">
-                        <img src="./assets/images/expenses.png" class="icon-img" alt="">
-                        <p>Today's Expense</p>
-                    </li>
-                    <li class="menu-item" id="level-id-3" onclick="location.href='transection.html'">
-                        <img src="./assets/images/transaction.png" class="icon-img" alt="">
-                        <p>All Transactions</p>
-                    </li>
-                    <!-- <li class="menu-item" id="level-id-3" onclick="location.href='chart.html'">
-                        <img src="./assets/images/transaction.png" class="icon-img" alt="">
-                        <p>Chart</p>
-                    </li> -->
-                </ul>
+                            <p>All Transactions</p>
+                        </li>
+                        <!-- <li class="menu-item" id="level-id-3" onclick="location.href='chart.html'">
+                            <img src="./assets/images/transaction.png" class="icon-img" alt="">
+                            <p>Chart</p>
+                        </li> -->
+                    </ul>
+                    
+                </div>
             </div>
         </div>
 

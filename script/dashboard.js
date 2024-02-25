@@ -16,10 +16,34 @@ let POPUP_IMAGE_BLOCK = document.getElementById("popup-image-id")
 let DISPLAY_MONTH_TOTAL = document.getElementById("amount-display-id")
 let DISPLAY_DAY_TOTAL = document.getElementById("amount-day-display-id")
 
+let GRID_CONTAINER = document.getElementById("grid-container-id")
+let LEFT_PANEL = document.getElementById("left-panel-id")
+
+let HAMBURGER_MENU = document.getElementById("hamburger-menu")
+
 document.getElementById("level-id-1").style.backgroundColor = "#c4e4ef"
 
 if (USER_NAME_SESSION === null || USER_NAME_SESSION.length === 0) {
     window.location.href = "index.html";
+}
+
+window.addEventListener('resize', function (event) {
+    if (calculateScreenWidth() < 500) {
+        HAMBURGER_MENU.style.display = "block"
+    } else {
+        HAMBURGER_MENU.style.display = "none"
+    }
+});
+
+if (calculateScreenWidth() < 500) {
+    HAMBURGER_MENU.style.display = "block"
+} else {
+    HAMBURGER_MENU.style.display = "none"
+}
+
+function calculateScreenWidth() {
+    let width = screen.width
+    return width
 }
 
 const checkUser = async () => {
@@ -274,12 +298,12 @@ const fetchCompleteData = async () => {
         // let index = monthlyTotals.indexOf(find)
         // let include = monthlyTotals.includes(find)
 
-        let include = monthlyTotals.findIndex((arrayData,index) =>{
+        let include = monthlyTotals.findIndex((arrayData, index) => {
             return arrayData.date === date
         })
 
 
-        if(include >= 0){
+        if (include >= 0) {
             monthlyTotals[include].amount += amount
             foundFlag = true
         }
@@ -290,7 +314,7 @@ const fetchCompleteData = async () => {
 
     })
 
-    console.log("MONTH :: ",monthlyTotals);
+    console.log("MONTH :: ", monthlyTotals);
     // -----------------------------------------------------
 
 
@@ -344,5 +368,19 @@ function createChart(data) {
     series.name = "Expense";
     series.columns.template.tooltipText = "Series: {name}\nMonth: {categoryX}\nAmount: {valueY}";
     series.columns.template.fill = am4core.color("#104547");
+
+}
+
+let barFlag = false
+function displaySideBar() {
+    console.log("CLICKED");
+    barFlag = !barFlag
+    if (barFlag === true) {
+        GRID_CONTAINER.style.gridTemplateColumns = "100% auto"
+        LEFT_PANEL.style.display = "flex"
+    } else {
+        GRID_CONTAINER.style.gridTemplateColumns = "auto 100%"
+        LEFT_PANEL.style.display = "none"
+    }
 
 }

@@ -21,7 +21,16 @@ let POPUP_BLOCK = document.getElementById("popup-delete")
 let POPUP_MESSAGE_TEXT_BLOCK = document.getElementById("message-text-id")
 let POPUP_IMAGE_BLOCK = document.getElementById("popup-image-id")
 
+let GRID_CONTAINER = document.getElementById("grid-container-id")
+let LEFT_PANEL = document.getElementById("left-panel-id")
+
 var WRAPPER = document.getElementById("table-wrapper-id")
+var MOBILE_WRAPPER = document.getElementById("mobile-wrapper-id")
+
+let MOBILE_SELECT_KEY = document.getElementById("field-options-key-id")
+let MOBILE_SELECT_VALUE = document.getElementById("sort-options-sort-id")
+
+let HAMBURGER_MENU = document.getElementById("hamburger-menu")
 
 var STORE_ARRAY = []
 
@@ -29,10 +38,6 @@ document.getElementById("level-id-3").style.backgroundColor = "#c4e4ef"
 
 document.addEventListener("DOMContentLoaded", function () {
     var selectedValue = document.getElementById("select-option-id");
-    console.log("RUN AFTER RELOAD");
-    console.log("SESSION LOG :: ", sessionStorage.getItem("page-total-list"));
-    console.log("PAGE NUMBER :: ", sessionStorage.getItem("page-number"));
-    console.log("PAGE COUNT :: ", sessionStorage.getItem("page-count"));
     
     let newPageCount 
     if (sessionStorage.getItem("page-total-list") == null) {
@@ -64,6 +69,12 @@ String.prototype.capitalizeFirstLetter = function () {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
+if (calculateScreenWidth() < 500) {
+    HAMBURGER_MENU.style.display = "block"
+}else{
+    HAMBURGER_MENU.style.display = "none"
+}
+
 const fetchTransactionData = async () => {
     const response = await fetch(`http://localhost:3000/expense?username=${USER_NAME_SESSION}&_sort=id&_order=desc`);
     const jsonData = await response.json();
@@ -84,12 +95,7 @@ const fetchTransactionData = async () => {
         STORE_ARRAY.push(data)
     })
 
-
-
-
-
     renderDataFromArray()
-
 
     // return jsonData;
 };
@@ -97,7 +103,6 @@ const fetchTransactionData = async () => {
 const fetchSortedData = async (table_col, method) => {
     const response = await fetch(`http://localhost:3000/expense?_sort=${table_col}&_order=${method}&username=${USER_NAME_SESSION}`)
     const responseData = await response.json()
-    console.log("MAIN SORT DATA :: ", responseData);
     responseJsonLength = responseData.length
     while (WRAPPER.lastChild) {
         WRAPPER.removeChild(WRAPPER.lastChild);
@@ -116,7 +121,6 @@ const fetchSortedData = async (table_col, method) => {
 const fetchTodaysData = async () => {
     const response = await fetch(`http://localhost:3000/expense?username=${USER_NAME_SESSION}&date=${todaysDate()}`);
     const jsonData = await response.json();
-    console.log("JSON :: ", jsonData);
 
     // PAGE_END_INDEX = Math.ceil(jsonData.length / PAGE_COUNT)
     // responseJsonLength = jsonData.length
@@ -152,7 +156,6 @@ const fetchDataForThisMonth = async () => {
 const fetchDataForCurrentDay = async () => {
     const response = await fetch(`http://localhost:3000/expense?username=${USER_NAME_SESSION}&date=${todaysDate()}`);  // http://localhost:3000/expense?date_gte=2024-02-20&date_lte=2024-02-22
     const jsonData = await response.json();
-    console.log("JSON :: ", jsonData);
 
     let totalValue = jsonData.reduce((holder, current) => {
         let sum = holder + current.amount
@@ -165,7 +168,6 @@ const fetchDataForCurrentDay = async () => {
 const fetchSingleData = async (id) => {
     const response = await fetch(`http://localhost:3000/expense?id=${id}`);  // http://localhost:3000/expense?date_gte=2024-02-20&date_lte=2024-02-22
     const jsonData = await response.json();
-    console.log("JSON :: ", jsonData);
     return jsonData
 }
 
@@ -177,13 +179,21 @@ function renderDataFromArray() {
     while (WRAPPER.lastChild) {
         WRAPPER.removeChild(WRAPPER.lastChild);
     }
+    while (MOBILE_WRAPPER.lastChild) {
+        MOBILE_WRAPPER.removeChild(MOBILE_WRAPPER.lastChild);
+    }
 
+    let width = calculateScreenWidth()
     STORE_ARRAY.map((data, index) => {
         index += 1;
         var startIndex = (PAGE_NUMBER * PAGE_COUNT) - (PAGE_COUNT - 1);
         var endIndex = (PAGE_NUMBER * PAGE_COUNT);
         if (index >= startIndex && index <= endIndex) {
-            WRAPPER.append(createHtml(data));
+            if (width < 600) {
+                MOBILE_WRAPPER.append(createMobileHtml(data)) 
+            }else{
+                WRAPPER.append(createHtml(data));
+            }
         }
     });
 
@@ -203,7 +213,6 @@ function updateIndex() {
     var currentIndexId = document.getElementById("span-current-page-id")
     var endIndexId = document.getElementById("span-end-page-id")
     PAGE_END_INDEX = Math.ceil(responseJsonLength / PAGE_COUNT)
-    console.log("PAGE INDEX :: ", PAGE_END_INDEX);
     currentIndexId.innerHTML = PAGE_NUMBER
     endIndexId.innerHTML = PAGE_END_INDEX
 }
@@ -229,11 +238,47 @@ function createHtml(data) {
     return td;
 }
 
+function createMobileHtml(data) {
+    let div = document.createElement('div');
+    div.innerHTML = `
+        <div class="card-container">
+            <div class="card-block">
+                <div class="card-element">
+                    <h4>Description</h4> <p id="card-description">: ${data.description}</p>
+                </div>
+            </div>
+            <div class="card-block">
+                <div class="card-element">
+                    <h4>Amount</h4> <p id="card-description">: ${data.amount}</p>
+                </div>
+            </div>
+            <div class="card-block">
+                <div class="card-element">
+                    <h4>Date</h4> <p id="card-description">: ${data.date}</p>
+                </div>
+            </div>
+            <div class="card-block">
+                <div class="card-element">
+                    <h4>Cetegory</h4> <p id="card-description">: ${data.category}</p>
+                </div>
+            </div>
+            <div class="card-block">
+                <div class="card-element">
+                    <button onclick="handleEdit(${data.id})" class="button">Edit</button>
+                    <button onclick="handleDelete(${data.id})" class="button">Delete</button>
+                </div>
+            </div>
+        </div>
+    
+    `;
+    return div;
+    // <img class="icon-image" src="../assets/images/editing.png" alt=""></img>
+    // <img class="icon-image" src="../assets/images/delete.png" alt=""></img>
+}
+
 async function handleEdit(id) {
-    console.log("EDIT ID :: ", id);
     var userResponse = await fetchSingleData(id)
     updatedCheckId = userResponse[0].id
-    console.log("DESC :: ", userResponse[0].description);
     NAME_INPUT.value = userResponse[0].description
     AMOUNT_INPUT.value = userResponse[0].amount
     DATE_INPUT.value = userResponse[0].date
@@ -243,7 +288,7 @@ async function handleEdit(id) {
     UPDATE_POP_UP.classList.add("active")
 
     document.getElementById('bar-id').classList.add("blur")
-    document.getElementById('grid-id').classList.add("blur")
+    GRID_CONTAINER.classList.add("blur")
 }
 
 function closeAddPopup() {
@@ -251,11 +296,10 @@ function closeAddPopup() {
     UPDATE_POP_UP.classList.remove("active")
 
     document.getElementById('bar-id').classList.remove("blur")
-    document.getElementById('grid-id').classList.remove("blur")
+    GRID_CONTAINER.classList.remove("blur")
 }
 
 function handleDelete(id) {
-    console.log("DELETE ID :: ", id);
     var selectedValue = document.getElementById("select-option-id").value;
     sessionStorage.setItem("page-number", PAGE_NUMBER)
     sessionStorage.setItem("page-count", PAGE_COUNT)
@@ -267,7 +311,6 @@ function handleDelete(id) {
         }
 
     }).then(data => {
-        console.log("RESPONSE DATA :: ", data.status)
         if (data.status == 200) {
             POPUP_BLOCK.style.display = "block";
             POPUP_MESSAGE_TEXT_BLOCK.innerText = "Data Deleted successfully"
@@ -481,7 +524,6 @@ function handleSelectionChange() {
 let toggleFlag = false
 function handleToggleButton() {
     toggleFlag = !toggleFlag
-    console.log("TOGGLE FLAG :: ", toggleFlag);
     if (toggleFlag === true) {
         fetchTodaysData()
     }
@@ -542,7 +584,6 @@ function handleEditData() {
             "Content-type": "application/json; charset=UTF-8"
         }
     }).then(data => {
-        console.log("RESPONSE DATA :: ", data.status)
         // handleClosePopup()
         closeAddPopup()
         if (data.status == 200) {
@@ -600,7 +641,6 @@ DATE_INPUT.addEventListener("input", (e) => {
 })
 
 SELECT_CAT_INPUT.addEventListener("input", (e) => {
-    console.log("e : ", e.target.value);
     if (e.target.value === "none") {
         SELECT_CAT_INPUT_ERROR.innerText = "Please select category"
     } else {
@@ -620,4 +660,54 @@ function handleSwitchToTodayExpense() {
     location.href='todayTransaction.html'
 }
 
+let barFlag = false
+function displaySideBar(){
+    barFlag = !barFlag
+    if (barFlag === true) {
+        GRID_CONTAINER.style.gridTemplateColumns = "100% auto"
+        LEFT_PANEL.style.display = "flex"
+    }else{
+        GRID_CONTAINER.style.gridTemplateColumns = "auto 100%"
+        LEFT_PANEL.style.display = "none"
+    }    
+    
+}
+
+function calculateScreenWidth() {
+    let width = screen.width
+    return width
+}
+// calculateScreenWidth()
+MOBILE_SELECT_VALUE.style.display = "none"
+MOBILE_SELECT_KEY.addEventListener("change",(e) => {
+    let sortSelect = MOBILE_SELECT_VALUE.value
+    let selectedItem = e.target.value
+
+    if (sortSelect != "none") {
+        fetchSortedData(selectedItem, sortSelect)
+        
+    }else{
+        MOBILE_SELECT_VALUE.style.display = "none"
+    }
+
+    if (selectedItem != "none") {
+        MOBILE_SELECT_VALUE.style.display = "inline-block"
+    }else{
+        MOBILE_SELECT_VALUE.style.display = "none"
+        fetchTransactionData()
+    }
+})
+
+MOBILE_SELECT_VALUE.addEventListener('change',(e) => {
+    let keySelect = MOBILE_SELECT_KEY.value
+    let selectedValue = e.target.value
+
+    if (selectedValue != "none") {
+        fetchSortedData(keySelect, selectedValue)
+    }else{
+        fetchTransactionData()        
+    }
+})
+
 fetchTransactionData()
+

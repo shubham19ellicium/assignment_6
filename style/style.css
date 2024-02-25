@@ -253,3 +253,28 @@ a {
     height: 500px;
     width: auto;
 }
+
+@media only screen and (max-width: 500px) {
+
+    .illust-img {
+        height: 400px;
+        width: auto;
+    }
+
+    .grid-container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .left-container{
+        order: 2;
+    }
+
+    .right-container{
+        order: 1;
+        padding: 16px 0px;
+    }
+
+
+
+}

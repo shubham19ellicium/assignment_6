@@ -6,10 +6,13 @@
     margin: 24px;
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 
 .container{
-    width: 850px;
+    display: flex;
+    justify-content: center;
+    /* width: 850px; */
 }
 
 table {
@@ -339,4 +342,106 @@ form.example button:hover {
     width: 100%;
 }
 
+.mobile-container{
+    display: none;
+}
+
+#hamburger-menu{
+    display: none;
+}
+
+
 /* ----------- Form pop up end ----------- */
+
+@media only screen and (max-width: 500px) {
+    .form-block.active {
+        display: block;
+        box-shadow: 1px 1px 10px black;
+        border-radius: 12px;
+        width: 90%;
+        position: fixed;
+        top: 32px;
+        background-color: white;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+    }
+    
+    .select-and-page-block{
+        /* position: absolute; */
+        left: 0px;
+        margin-top: 24px;
+        /* margin-left: 20px; */
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        width: 90%;
+        gap: 16px;
+    }
+
+    .select-block {
+        margin: 0px 0px;
+    }
+
+    .container{
+        display: none;
+    }
+
+    .mobile-container{
+        display: block;
+        width: 95%;
+    }
+
+    .card-block{
+        /* width: 80%; */
+        padding: 8px;
+        /* margin: 4px 0px; */
+    }
+
+    .card-element{
+        display: inline-flex;
+        gap: 8px;
+    }
+
+    .right-panel {
+        margin: 24px 0px;
+        display: flex;
+        justify-content: center;
+        height: fit-content;
+        align-items: center;
+    }
+
+    .card-container{
+        margin: 12px 0px;
+        background-color: rgb(145, 201, 212);
+        border-radius: 8px;
+        padding: 16px;
+        overflow: hidden;
+        /* text-wrap: nowrap; */
+    }
+
+    .bottom-block {
+        margin: 16px 0px;
+        display: flex;
+        justify-content: space-between;
+        align-self: start;
+        margin: 0px 12px;
+    }
+
+    .select-options {
+        padding: 5px 32px;
+        margin: 1px;
+    }
+
+    .mobile-select-option{
+        width: 100px;
+        padding: 8px 0px;
+        margin-right: 12px;
+    }
+
+    .right-panel {
+        grid-column: 2 / 2;
+        /* height: 50px;  */
+        overflow-y: scroll;
+    }
+}

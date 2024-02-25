@@ -14,6 +14,7 @@
 
 <body>
     <nav class="bar" id="bar-id">
+        <img src="./assets/images/menu.png" id="hamburger-menu" onclick="displaySideBar()" class="logout-image"></img>
         <div class="logo">
             <h3 onclick="location.href='dashboard.html'">Personal Expense Tracker</h3>
         </div>
@@ -22,9 +23,9 @@
         </div>
 
     </nav>
-
-    <div class="grid-container" id="grid-id">
-        <div class="left-panel">
+    <!-- <button onclick="displaySideBar()" class="toogle-nav">Toggle Nav</button> -->
+    <div id="grid-container-id" class="grid-container" >
+        <div id="left-panel-id" class="left-panel">
             <div class="left-panel-wrapper">
                 <div class="price-block">
                     <div class="price-monthly-block">
@@ -141,14 +142,13 @@
                     </tbody>
                 </table>
 
-                <div class="bottom-block" id="bottom-block-id">
+                <!-- <div class="bottom-block" id="bottom-block-id">
 
                     <div class="select-and-page-block">
                         <div class="select-block">
                             <label for="pageSize">Page size</label>
                             <select name="Search by" class="select-options" onchange="handleSelectionChange()"
                                 id="select-option-id">
-                                <!-- <option value="0">0</option> -->
                                 <option value="10">10</option>
                                 <option value="20">20</option>
                                 <option value="30">30</option>
@@ -168,7 +168,53 @@
 
                     </div>
 
+                </div> -->
+            </div>
+            <div class="mobile-container" id="mobile-container-id">
+                <div class="two-field">
+                    <select name="field-options" class='mobile-select-option' id="field-options-key-id">
+                        <option value="none">Select key</option>
+                        <option value="date">Date</option>
+                        <option value="amount">Amount</option>
+                        <option value="description">Description</option>
+                        <option value="category">Category</option>
+                    </select>
+                    <select name="sort-options" class='mobile-select-option' id="sort-options-sort-id">
+                        <option value="none">Sort by</option>
+                        <option value="asc">Asc</option>
+                        <option value="desc">Desc</option>
+                    </select>
                 </div>
+                <div class="mobile-wrapper" id="mobile-wrapper-id"></div>
+                
+            </div>
+            <div class="bottom-block" id="bottom-block-id">
+
+                <div class="select-and-page-block">
+                    <div class="select-block">
+                        <label for="pageSize">Page size</label>
+                        <select name="Search by" class="select-options" onchange="handleSelectionChange()"
+                            id="select-option-id">
+                            <!-- <option value="0">0</option> -->
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                            <option value="500">500</option>
+                        </select>
+                    </div>
+                    <div class="page-display-detial-block">
+                        <p>Page <span id="span-current-page-id">0</span> of <span id="span-end-page-id">0</span></p>
+                        <div class="button-block">
+                            <button class="filter-button" id="decrement-button-id" onclick="decrementPage()"> < </button>
+                            <button class="filter-button" id="increment-button-id" onclick="incrementPage()"> > </button>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
         </div>
     </div>

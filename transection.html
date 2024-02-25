@@ -14,6 +14,7 @@
 <body>
 
     <nav class="bar" id="bar-id">
+        <img src="./assets/images/menu.png" id="hamburger-menu" onclick="displaySideBar()" class="logout-image"></img>
         <div class="logo">
             <h3 onclick="location.href='dashboard.html'">Personal Expense Tracker</h3>
         </div>
@@ -22,9 +23,9 @@
         </div>
 
     </nav>
-
-    <div id="grid-id" class="grid-container">
-        <div class="left-panel">
+    <!-- <button onclick="displaySideBar()" class="toogle-nav">Toggle Nav</button> -->
+    <div id="grid-container-id"  class="grid-container">
+        <div id="left-panel-id" class="left-panel">
             <div class="left-panel-wrapper">
                 <div class="price-block">
                     <div class="price-monthly-block">
@@ -71,9 +72,9 @@
                     </li>
                     <li class="menu-item" id="level-id-2" onclick="handleSwitchToTodayExpense()">
                         <img src="./assets/images/expenses.png" class="icon-img" alt="">
-                        <p >Today's Expense</p>
+                        <p>Today's Expense</p>
                     </li>
-                    <li class="menu-item" id="level-id-3" >
+                    <li class="menu-item" id="level-id-3">
                         <img src="./assets/images/transaction.png" class="icon-img" alt="">
                         <p>All Transactions</p>
                     </li>
@@ -141,38 +142,58 @@
                     </tbody>
                 </table>
 
-                <div class="bottom-block" id="bottom-block-id">
+                
+            </div>
+            <div class="mobile-container" id="mobile-container-id">
+                <div class="two-field">
+                    <select name="field-options" class='mobile-select-option' id="field-options-key-id">
+                        <option value="none">Select key</option>
+                        <option value="date">Date</option>
+                        <option value="amount">Amount</option>
+                        <option value="description">Description</option>
+                        <option value="category">Category</option>
+                    </select>
+                    <select name="sort-options" class='mobile-select-option' id="sort-options-sort-id">
+                        <option value="none">Sort by</option>
+                        <option value="asc">Asc</option>
+                        <option value="desc">Desc</option>
+                    </select>
+                </div>
+                <div class="mobile-wrapper" id="mobile-wrapper-id"></div>
+                
+            </div>
+            <div class="bottom-block" id="bottom-block-id">
 
-                    <div class="select-and-page-block">
-                        <div class="select-block">
-                            <label for="pageSize">Page size</label>
-                            <select name="Search by" class="select-options" onchange="handleSelectionChange()"
-                                id="select-option-id">
-                                <!-- <option value="0">0</option> -->
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                                <option value="40">40</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                                <option value="500">500</option>
-                            </select>
+                <div class="select-and-page-block">
+                    <div class="select-block">
+                        <label for="pageSize">Page size</label>
+                        <select name="Search by" class="select-options" onchange="handleSelectionChange()"
+                            id="select-option-id">
+                            <!-- <option value="0">0</option> -->
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                            <option value="500">500</option>
+                        </select>
+                    </div>
+                    <div class="page-display-detial-block">
+                        <p>Page <span id="span-current-page-id">0</span> of <span id="span-end-page-id">0</span></p>
+                        <div class="button-block">
+                            <button class="filter-button" id="decrement-button-id" onclick="decrementPage()">
+                                < </button>
+                                    <button class="filter-button" id="increment-button-id"
+                                        onclick="incrementPage()"> > </button>
                         </div>
-                        <div class="page-display-detial-block">
-                            <p>Page <span id="span-current-page-id">0</span> of <span id="span-end-page-id">0</span></p>
-                            <div class="button-block">
-                                <button class="filter-button" id="decrement-button-id" onclick="decrementPage()">
-                                    < </button>
-                                        <button class="filter-button" id="increment-button-id"
-                                            onclick="incrementPage()"> > </button>
-                            </div>
-                        </div>
-
                     </div>
 
                 </div>
+
             </div>
         </div>
+    </div>
     </div>
 
     <div id="popup-delete" class="popup">
@@ -181,7 +202,7 @@
         </div>
         <div class="popup-content">
             <div class="seccess-img-block">
-                <img id="popup-image-id"  class="success-img" alt="">
+                <img id="popup-image-id" class="success-img" alt="">
             </div>
             <p id="message-text-id"></p>
         </div>
@@ -206,8 +227,8 @@
                             <label for=""><span class="required-span">* </span>Description</label>
                             <p class="error-message" id="name-error-id"></p>
                         </div>
-                        <input type="text" class="form-input" placeholder="Enter expense description" name="expense-name"
-                            id="name-id" maxlength="50" autocomplete="off" required>
+                        <input type="text" class="form-input" placeholder="Enter expense description"
+                            name="expense-name" id="name-id" maxlength="50" autocomplete="off" required>
                     </div>
                     <div class="form-input-element-block">
                         <div class="form-titile-block">
@@ -216,7 +237,9 @@
                             </label>
                             <p class="error-message" id="amount-error-id"></p>
                         </div>
-                        <input type="text" class="form-input" placeholder="Enter expense amount" name="amount" id="amount-id" maxlength="50" maxlength="6" required pattern="[0-9]+" title="Please enter only numers">
+                        <input type="text" class="form-input" placeholder="Enter expense amount" name="amount"
+                            id="amount-id" maxlength="50" maxlength="6" required pattern="[0-9]+"
+                            title="Please enter only numers">
                         <!-- <input type="text" class="form-input" placeholder="Enter expense amount" name="amount"
                             id="amount-id" maxlength="50" autocomplete="off" required> -->
                     </div>
