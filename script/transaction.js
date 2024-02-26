@@ -57,6 +57,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+window.addEventListener('resize', function (event) {
+    if (calculateScreenWidth() < 768) {
+        HAMBURGER_MENU.style.display = "block"
+    } else {
+        HAMBURGER_MENU.style.display = "none"
+    }
+});
+
 let USER_NAME_SESSION = sessionStorage.getItem("username")
 
 var responseJsonLength
@@ -69,7 +77,7 @@ String.prototype.capitalizeFirstLetter = function () {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
-if (calculateScreenWidth() < 500) {
+if (calculateScreenWidth() < 768) {
     HAMBURGER_MENU.style.display = "block"
 }else{
     HAMBURGER_MENU.style.display = "none"
@@ -189,7 +197,7 @@ function renderDataFromArray() {
         var startIndex = (PAGE_NUMBER * PAGE_COUNT) - (PAGE_COUNT - 1);
         var endIndex = (PAGE_NUMBER * PAGE_COUNT);
         if (index >= startIndex && index <= endIndex) {
-            if (width < 600) {
+            if (width < 786) {
                 MOBILE_WRAPPER.append(createMobileHtml(data)) 
             }else{
                 WRAPPER.append(createHtml(data));
@@ -666,9 +674,11 @@ function displaySideBar(){
     if (barFlag === true) {
         GRID_CONTAINER.style.gridTemplateColumns = "100% auto"
         LEFT_PANEL.style.display = "flex"
+        HAMBURGER_MENU.src = "../assets/images/close.png"
     }else{
         GRID_CONTAINER.style.gridTemplateColumns = "auto 100%"
         LEFT_PANEL.style.display = "none"
+        HAMBURGER_MENU.src = "../assets/images/menu.png"
     }    
     
 }

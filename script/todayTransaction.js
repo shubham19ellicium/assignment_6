@@ -65,11 +65,19 @@ if (USER_NAME_SESSION === null || USER_NAME_SESSION.length === 0) {
     window.location.href = "index.html";
 }
 
-if (calculateScreenWidth() < 500) {
+if (calculateScreenWidth() < 768) {
     HAMBURGER_MENU.style.display = "block"
 }else{
     HAMBURGER_MENU.style.display = "none"
 }
+
+window.addEventListener('resize', function (event) {
+    if (calculateScreenWidth() < 768) {
+        HAMBURGER_MENU.style.display = "block"
+    } else {
+        HAMBURGER_MENU.style.display = "none"
+    }
+});
 
 const fetchTransactionData = async () => {
     const response = await fetch(`http://localhost:3000/expense?username=${USER_NAME_SESSION}&date=${todaysDate()}&_sort=id&_order=desc`);
@@ -169,7 +177,7 @@ function renderDataFromArray() {
         var startIndex = (PAGE_NUMBER * PAGE_COUNT) - (PAGE_COUNT - 1);
         var endIndex = (PAGE_NUMBER * PAGE_COUNT);
         if (index >= startIndex && index <= endIndex) {
-            if (width < 600) {
+            if (width < 768) {
                 MOBILE_WRAPPER.append(createMobileHtml(data)) 
             }else{
                 WRAPPER.append(createHtml(data));
@@ -647,9 +655,11 @@ function displaySideBar(){
     if (barFlag === true) {
         GRID_CONTAINER.style.gridTemplateColumns = "100% auto"
         LEFT_PANEL.style.display = "flex"
+        HAMBURGER_MENU.src = "../assets/images/close.png"
     }else{
         GRID_CONTAINER.style.gridTemplateColumns = "auto 100%"
         LEFT_PANEL.style.display = "none"
+        HAMBURGER_MENU.src = "../assets/images/menu.png"
     }    
     
 }

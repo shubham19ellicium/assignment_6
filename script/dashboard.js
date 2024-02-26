@@ -28,14 +28,14 @@ if (USER_NAME_SESSION === null || USER_NAME_SESSION.length === 0) {
 }
 
 window.addEventListener('resize', function (event) {
-    if (calculateScreenWidth() < 500) {
+    if (calculateScreenWidth() < 768) {
         HAMBURGER_MENU.style.display = "block"
     } else {
         HAMBURGER_MENU.style.display = "none"
     }
 });
 
-if (calculateScreenWidth() < 500) {
+if (calculateScreenWidth() < 768) {
     HAMBURGER_MENU.style.display = "block"
 } else {
     HAMBURGER_MENU.style.display = "none"
@@ -378,9 +378,11 @@ function displaySideBar() {
     if (barFlag === true) {
         GRID_CONTAINER.style.gridTemplateColumns = "100% auto"
         LEFT_PANEL.style.display = "flex"
+        HAMBURGER_MENU.src = "../assets/images/close.png"
     } else {
         GRID_CONTAINER.style.gridTemplateColumns = "auto 100%"
         LEFT_PANEL.style.display = "none"
+        HAMBURGER_MENU.src = "../assets/images/menu.png"
     }
 
 }

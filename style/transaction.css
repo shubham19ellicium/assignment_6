@@ -353,7 +353,7 @@ form.example button:hover {
 
 /* ----------- Form pop up end ----------- */
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 768px) {
     .form-block.active {
         display: block;
         box-shadow: 1px 1px 10px black;

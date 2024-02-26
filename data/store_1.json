@@ -43,14 +43,6 @@
       "id": 4
     },
     {
-      "description": "sdf sdajf sdklf jsaldfj ;sjfls jfl;sjd flj    jlsd",
-      "amount": 100000,
-      "date": "2024-02-20",
-      "category": "Food",
-      "username": "shubham@123",
-      "id": 6
-    },
-    {
       "description": "Dr visit",
       "amount": 100,
       "date": "2024-02-20",
@@ -417,6 +409,14 @@
       "category": "Miscellaneous",
       "username": "shubham@123",
       "id": 64
+    },
+    {
+      "description": "Fuel",
+      "amount": 500,
+      "date": "2024-02-26",
+      "category": "Miscellaneous",
+      "username": "shubham@123",
+      "id": 65
     }
   ]
 }
